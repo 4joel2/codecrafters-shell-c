@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
       continue;
     }
     if(!strncmp(input, "type ", 5)) {
-      if(check_command_type(input + 5) == 0) {
+      if(check_command_type("echo") == 0) {
         printf("%s is a shell builtin\n", input + 5);
         continue;
       } else {
