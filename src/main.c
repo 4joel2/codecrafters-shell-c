@@ -3,15 +3,15 @@
 #include <string.h>
 
 const char *builtin_functions[] = {"exit ", "echo ", "type "};
+const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
 
 const int check_command_type(char * input) {
-  int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
   for (int i = 0; i < len; i++) {
     if(strcmp(builtin_functions[i], input)) {
       return 0;
     }
+    return -1;
   }
-  return -1;
 }
 
 int main(int argc, char *argv[]) {
@@ -38,11 +38,9 @@ int main(int argc, char *argv[]) {
     }
     if(!strncmp(input, "type ", 5)) {
       if(check_command_type(input + 5) == 0) {
-        printf("%d\n", check_command_type("invalid-command"));
         printf("%s is a shell builtin\n", input + 5);
         continue;
       } else {
-        printf("%d\n", check_command_type("invalid_command"));
         printf("%s: not found\n", input + 5);
         continue;
       }
