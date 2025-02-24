@@ -2,10 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *builtin_functions[] = {"exit ", "echo ", "type "};
+const char *builtin_functions[] = {"exit", "echo", "type"};
 const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
 
+
+void trim_newline(char *str) {
+  size_t len = strlen(str);
+  if (len > 0 && str[len - 1] == '\n') {
+    str[len - 1] = '\0';
+  }
+}
 const int check_command_type(char * input) {
+  trim_newline(input);
   for (int i = 0; i < len; i++) {
     if(strcmp(builtin_functions[i], input) == 0) {
       return 0;
