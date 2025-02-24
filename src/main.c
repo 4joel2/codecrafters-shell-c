@@ -4,9 +4,19 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <linux/limits.h>
 
 const char *builtin_functions[] = {"exit", "echo", "type"};
 const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
+
+
+char *get_curr_dir() {
+
+   char cwd[PATH_MAX];
+   if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    return cwd;
+   }
+}
 
 void fork_and_exec_cmd(char *full_path, int argc, char **argv) {
   pid_t pid = fork();
@@ -113,6 +123,9 @@ int main(int argc, char *argv[]) {
           continue;
         }
       }
+    }
+    if(!strncmp(input, "pwd", 3)) {
+      printf("%s\n", get_curr_dir());
     }
 
     char *argv[10];
