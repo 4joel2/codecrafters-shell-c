@@ -7,11 +7,11 @@ const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
 
 const int check_command_type(char * input) {
   for (int i = 0; i < len; i++) {
-    if(strcmp(builtin_functions[i], input)) {
+    if(strcmp(builtin_functions[i], input) == 0) {
       return 0;
     }
-    return -1;
   }
+  return -1;
 }
 
 int main(int argc, char *argv[]) {
@@ -30,7 +30,6 @@ int main(int argc, char *argv[]) {
       input[len - 1] = '\0';
     }
 
-    printf("%d\n", check_command_type("invalid_command"));
     if(!strcmp(input, "exit 0")) {
       exit(0);
     }       
