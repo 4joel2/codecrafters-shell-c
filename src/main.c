@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+const *builtin_functions[] = {"exit ", "echo ", "type "};
+
+const int check_command_type(char * input) {
+  int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
+  for (int i = 0; i < len; i++) {
+    if(!strcmp(builtin_functions[i], input)) {
+      return 0;
+    }
+  }
+  return -1;
+}
+
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
@@ -23,6 +35,13 @@ int main(int argc, char *argv[]) {
     if(!strncmp(input, "echo ", 5)) {
       printf("%s\n", input + 5);
       continue;
+    }
+    if(!strncmp(input, "type ", 5)) {
+      if(check_command_type(input + 5) == 0) {
+        printf("%s is a shell builtin\n", input + 5);
+      } else {
+        printf("%s: not found\n", input + 5);
+      }
     }
     printf("%s: command not found\n", input);
 
