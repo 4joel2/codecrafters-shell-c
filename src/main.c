@@ -126,6 +126,7 @@ int main(int argc, char *argv[]) {
     if(!strncmp(input, "pwd", 3)) {
       char *curr_dir = get_curr_dir();
       printf("%s\n", curr_dir);
+      continue;
     }
 
     char *argv[10];
