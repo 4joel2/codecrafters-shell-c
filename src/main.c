@@ -8,14 +8,13 @@
 
 const char *builtin_functions[] = {"exit", "echo", "type", "pwd"};
 const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
-
+char cwd[PATH_MAX];
 
 char *get_curr_dir() {
-
-   char cwd[PATH_MAX];
    if (getcwd(cwd, sizeof(cwd)) != NULL) {
     return cwd;
    }
+   return NULL;
 }
 
 void fork_and_exec_cmd(char *full_path, int argc, char **argv) {
