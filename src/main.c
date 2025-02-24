@@ -2,9 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 const char *builtin_functions[] = {"exit", "echo", "type"};
 const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
+
+void fork_and_exec_cmd(char *full_path, int argc, char **argv) {
+  pid_t pid = fork();
+  if (pid == 0) {
+    execv(full_path, argv);
+    perror("execv");
+    exit(1);
+  } else if (pid < 0)
+    perror("fork");
+  else {
+    int status;
+    waitpid(pid, &status, 0);
+  }
+}    
 
 // Function to check if a file exists and is executable
 int is_executable(const char *path) { return access(path, X_OK) == 0; }
@@ -96,9 +112,23 @@ int main(int argc, char *argv[]) {
         }
       }
     }
-    printf("%s: command not found\n", input);
 
-    
+    char *argv[10];
+    int argc = 0;
+    char *token = strtok(input, " ");
+
+    while (token != NULL && argc < 10) {
+      argv[argc++] = token;
+      token = strtok(NULL, " ");
+    }
+
+    argv[argc] = NULL;
+    char *cmd_path = find_in_path(argv[0]);
+    if (cmd_path) {
+      fork_and_exec_cmd(cmd_path, argc, argv);
+    } else {
+    printf("%s: command not found\n", input);
+    }
   }
   return 0;
 }
