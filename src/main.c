@@ -20,9 +20,8 @@ int main(int argc, char *argv[]) {
     if(!strcmp(input, "exit 0")) {
       exit(0);
     }       
-    if(!strncmp(input, "echo", 4)) {
-      strncpy(input, &input[5], len);
-      printf("%s\n", input);
+    if(!strncmp(input, "echo ", 5)) {
+      printf("%s\n", input + 5);
       continue;
     }
     printf("%s: command not found\n", input);
