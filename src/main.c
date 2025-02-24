@@ -77,7 +77,7 @@ const int check_command_type(char * input) {
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
-  printf("Current PATH: %s\n", getenv("PATH"));
+  //printf("Current PATH: %s\n", getenv("PATH"));
 
 
   while(1) {
