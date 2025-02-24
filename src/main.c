@@ -11,6 +11,12 @@ int is_executable(const char *path) { return access(path, X_OK) == 0; }
 
 // Function to search for a command in the PATH
 char *find_in_path(const char *command) {
+  if (strchr(command, '/')) {
+    if (is_executable(command)) {
+        return strdup(command); // Return a copy of the valid path
+    }
+    return NULL; // Not executable or doesn't exist
+  }
   char *path_env = getenv("PATH");
   if (path_env == NULL) {
     return NULL;
