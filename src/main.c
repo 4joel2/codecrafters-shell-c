@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     }
     if(!strncmp(input, "type ", 5)) {
       if(check_command_type(input + 5) == 0) {
-        printf("%d\n", check_command_type(input + 5));
+        printf("%d\n", check_command_type("invalid-command"));
         printf("%s is a shell builtin\n", input + 5);
         continue;
       } else {
