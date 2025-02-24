@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     if (len > 0 && input[len - 1] == '\n') {
       input[len - 1] = '\0';
     }
-    if(input == "exit 0"){
+    if(!strcmp(input, "exit 0")){
       exit(0);
     }       
     printf("%s: command not found\n", input);
