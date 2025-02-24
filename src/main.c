@@ -27,6 +27,7 @@ int is_executable(const char *path) { return access(path, X_OK) == 0; }
 
 // Function to search for a command in the PATH
 char *find_in_path(const char *command) {
+
   if (strchr(command, '/')) {
     if (is_executable(command)) {
         return strdup(command); // Return a copy of the valid path
@@ -41,6 +42,7 @@ char *find_in_path(const char *command) {
   char *path_copy = strdup(path_env);
   char *dir = strtok(path_copy, ":");
   static char full_path[1024];
+  printf("Checking: %s/%s\n", dir, command);
 
   while (dir != NULL) {
     snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
@@ -75,6 +77,7 @@ const int check_command_type(char * input) {
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
+  printf("Current PATH: %s\n", getenv("PATH"));
 
 
   while(1) {
