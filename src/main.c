@@ -12,7 +12,11 @@ int main(int argc, char *argv[]) {
   // Wait for user input
   char input[100];
   fgets(input, 100, stdin);
-  char user_input[] = input;
-  printf("%s: command not found\n", user_input);
+  size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n') {
+        input[len - 1] = '\0';
+    }
+
+  printf("%s: invalid command", input);
   return 0;
 }
