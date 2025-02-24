@@ -83,8 +83,10 @@ int main(int argc, char *argv[]) {
         char *path = find_in_path(cmd);
         if(path) {
           printf("%s is %s\n", cmd, path);
+          continue;
         } else {
           printf("%s: not found\n");
+          continue;
         }
       }
     }
