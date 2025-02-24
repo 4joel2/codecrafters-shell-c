@@ -13,10 +13,11 @@ int main(int argc, char *argv[]) {
   char input[100];
   fgets(input, 100, stdin);
   size_t len = strlen(input);
+  // change the last character of the input to \0 bc fgets puts new line by default
     if (len > 0 && input[len - 1] == '\n') {
         input[len - 1] = '\0';
     }
 
-  printf("%s: invalid command", input);
+  printf("%s: command not found", input);
   return 0;
 }
