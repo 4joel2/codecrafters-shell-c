@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
           printf("%s is %s\n", cmd, path);
           continue;
         } else {
-          printf("%s: not found\n");
+          printf("%s: not found\n", cmd);
           continue;
         }
       }
