@@ -84,15 +84,17 @@ int main(int argc, char *argv[]) {
     if(!strncmp(input, "type ", 5)) {
       if(check_command_type(cmd) == 0) {
         printf("%s is a shell builtin\n", cmd);
+        continue;
       } else {
         char *path = find_in_path(cmd);
         if(path) {
           printf("%s is %s\n", cmd, path);
+          continue;
         } else {
           printf("%s: not found\n", cmd);
+          continue;
         }
       }
-      continue;
     }
     printf("%s: command not found\n", input);
 
