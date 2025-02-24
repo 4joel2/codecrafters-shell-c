@@ -20,8 +20,7 @@ int main(int argc, char *argv[]) {
     printf("%s: command not found\n", input);
     
     if(input == "exit 0"){
-      break;
-      return 0;
+      exit(0);
     }
   }
   return 0;
