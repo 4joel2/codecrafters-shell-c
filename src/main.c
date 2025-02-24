@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <linux/limits.h>
 
-const char *builtin_functions[] = {"exit", "echo", "type"};
+const char *builtin_functions[] = {"exit", "echo", "type", "pwd"};
 const int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
 
 
