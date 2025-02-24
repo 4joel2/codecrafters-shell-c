@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
     if(!strncmp(input, "echo", 4)) {
       strncpy(input, &input[5], len);
       printf("%s\n", input);
+      continue;
     }
     printf("%s: command not found\n", input);
 
