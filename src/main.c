@@ -29,6 +29,8 @@ int main(int argc, char *argv[]) {
     if (len > 0 && input[len - 1] == '\n') {
       input[len - 1] = '\0';
     }
+
+    printf("%d\n", check_command_type("invalid_command"));
     if(!strcmp(input, "exit 0")) {
       exit(0);
     }       
