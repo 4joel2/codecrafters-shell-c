@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const *builtin_functions[] = {"exit ", "echo ", "type "};
+const char *builtin_functions[] = {"exit ", "echo ", "type "};
 
 const int check_command_type(char * input) {
   int len = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
