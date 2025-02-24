@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
         printf("%s is a shell builtin\n", input + 5);
         continue;
       } else {
-        printf("%d\n", check_command_type("echo"));
+        printf("%d\n", check_command_type("invalid_command"));
         printf("%s: not found\n", input + 5);
         continue;
       }
