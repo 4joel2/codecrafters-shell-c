@@ -100,7 +100,15 @@ int main(int argc, char *argv[]) {
     }
 
     char *cmd = input + 5;
-
+    if (!strncmp(input, "cd ", 3)) {
+    char *dir = input + 3; // Extract the directory from input
+    trim_newline(dir); // Remove trailing newline (if any)
+    
+    if (chdir(dir) != 0) {
+        perror("cd"); // Print error if `chdir` fails
+    }
+    continue; // Skip further processing
+    } 
     if(!strcmp(input, "exit 0")) {
       exit(0);
     }       
