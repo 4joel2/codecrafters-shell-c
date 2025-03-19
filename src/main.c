@@ -104,8 +104,9 @@ int main(int argc, char *argv[]) {
     char *dir = input + 3; // Extract the directory from input
     trim_newline(dir); // Remove trailing newline (if any)
     
-    if (chdir(dir) != 0) {
-        perror("cd"); // Print error if `chdir` fails
+      if (chdir(dir) != 0) {
+        printf("cd: %s: ", dir);
+        perror("");
     }
     continue; // Skip further processing
     } 
